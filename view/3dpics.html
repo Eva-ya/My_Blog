@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title></title>
+
+	<style type="text/css">
+    *{
+    	padding:0;
+    	margin:0;
+    }
+    body{
+        background:gray;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+
+    }
+    #papa{
+        width:185px;
+        height:300px;
+        position:relative;
+        left:50%;
+        top:250px;
+        margin-left:-92.5px;
+        transform-style: preserve-3d;
+        transform: rotateX(0deg) rotateY(0deg);
+        border-radius: 20px;
+
+    }
+
+    div img{
+        width:100%;
+        height:100%;
+        position:absolute;
+        border-radius: 20px;
+        box-shadow: 2px 2px 50px yellow ;
+
+    }
+
+    img:nth-child(1){
+
+        transform:translate3d(0,0,500px) rotateY(0deg);
+    }
+    img:nth-child(2){
+
+        transform:translate3d(353.5px,0,353.5px) rotateY(45deg);
+    }
+    img:nth-child(3){
+
+        transform:translate3d(500px,0,0) rotateY(90deg);
+    }
+    img:nth-child(4){
+
+        transform:translate3d(353.5px,0,-353.5px) rotateY(135deg);
+    }
+    img:nth-child(5){
+
+        transform:translate3d(0,0,-500px) rotateY(180deg);
+    }
+    img:nth-child(6){
+
+        transform:translate3d(-353.5px,0,-353.5px) rotateY(-135deg);
+    }
+    img:nth-child(7){
+
+        transform:translate3d(-500px,0,0) rotateY(-90deg);
+    }
+    img:nth-child(8){
+
+        transform:translate3d(-353.5px,0,353.5px) rotateY(-45deg);
+    }
+
+
+	</style>
+</head>
+<body>
+<div id="papa">
+    <img src="../image/01.jpg"/>
+    <img src="../image/02.jpg"/>
+    <img src="../image/03.jpg"/>
+    <img src="../image/04.jpg"/>
+    <img src="../image/05.jpg"/>
+    <img src="../image/06.jpg"/>
+    <img src="../image/07.jpg"/>
+    <img src="../image/08.jpg"/>
+</div>
+
+</body>
+<script type="text/javascript">
+var dd=document.getElementById("papa");
+// var ddsx=
+console.log(dd);
+var x1,y1,x2,y2;
+var xx=0,yy=0;
+var a=0,b=0;
+function move1(ev){
+        var ev=ev||evnt;
+         x2=ev.clientX;
+         y2=ev.clientY;
+          a=yy+((x2-x1)/10);
+          b=xx+(-(y2-y1)/10);
+          console.log(a);
+
+         dd.style.transform="rotateX("+b+"deg"+")"+" "+"rotateY("+a+"deg"+")";
+
+}
+
+document.onmousedown=function(ev){
+      var ev=ev||evnt;
+         x1=ev.clientX;
+         y1=ev.clientY;
+          document.onmousemove=move1;
+
+
+}
+document.onmouseup=function () {
+    xx=b;
+    yy=a;
+   document.onmousemove='none';
+}
+document.ondragstart=function () {
+   return false;
+}
+
+
+
+</script>
+</html>

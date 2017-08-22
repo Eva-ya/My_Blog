@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+	*{
+		padding:0;
+		margin:0;
+
+	}
+	.box{
+		width:600px;
+		height:600px;
+		border:1px solid teal;
+		margin:0 auto;
+		position:relative;
+		overflow:hidden;
+	}
+	.imgbox{
+		width:6000px;
+		position:absolute;
+		left:-600px;
+	}
+	img{
+		width:600px;
+		height:600px;
+		float:left;
+	}
+	button{
+		width:50px;
+		height:50px;
+		position:absolute;
+	}
+	.btnr{
+		right:0;
+		top:45%;
+	}
+	.btnl{
+		left:0;
+		top:45%;
+	}
+	</style>
+	<script type="text/javascript" src="../js/jquery-2.1.0.js">
+    </script>
+</head>
+<body>
+<div class="box">
+	<div class="imgbox">
+		<img src="../image/08.jpg" alt="">
+		<img src="../image/01.jpg" alt="">
+		<img src="../image/02.jpg" alt="">
+		<img src="../image/03.jpg" alt="">
+		<img src="../image/04.jpg" alt="">
+		<img src="../image/05.jpg" alt="">
+		<img src="../image/06.jpg" alt="">
+		<img src="../image/07.jpg" alt="">
+		<img src="../image/08.jpg" alt="">
+		<img src="../image/01.jpg" alt="">
+		
+	</div>
+	<button class="btnr">&gt;</button>
+	<button class="btnl">&lt;</button>
+</div>
+
+</body>
+<script>
+$('.btnr').click(function(){
+	if(!$('.imgbox').is(':animated')){
+	if(parseInt($('.imgbox').css('left'))==-5400){
+		$('.imgbox').css('left','-600px');		
+	}
+	$('.imgbox').animate({'left':'-=600px'},500);
+
+}})
+$('.btnl').click(function(){
+	if(!$('.imgbox').is(':animated')){
+	if(parseInt($('.imgbox').css('left'))==0){
+		$('.imgbox').css('left','-4800px');			
+	}
+	$('.imgbox').animate({'left':'+=600px'},500);
+
+}})
+</script>
+</html>

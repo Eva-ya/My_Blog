@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title></title>
+
+	<style type="text/css">
+	*{
+	padding:0;
+	margin:0;
+
+	}
+	header{
+		height:100px;
+		background:#262626;
+		width:100%;
+		text-align:center;
+		font-size:30px;
+		color:#fff;
+		position:fixed;
+		top:0;
+	}
+	section{
+		margin-top:110px;
+	}
+	section ul li{
+		height:50px;
+		background:#fffccc;
+		margin-top:10px;
+		text-align:center;
+
+	}
+	ul li span{
+		display:inline-block;
+		height:50px;
+		line-height:50px;
+		font-size:25px;
+
+	}
+	ul li.current{
+		background:#be0b0b;
+		color:#fff;
+
+	}
+	ul li:hover{
+		background:#be0b0b;
+		opacity:0.2;
+		color:#fff;
+	}
+	footer{
+		height:100px;
+		width:100%;
+		position:fixed;
+		bottom:0;
+	}
+	footer .rangebar{
+		height:50px;
+		background:#be0b0b;
+		display:flex;
+	}
+	footer .control{
+		height:50px;
+		background:#262626;
+		display:flex;
+	}
+	.rb1,.rb3{
+		flex:1;
+		line-height:50px;
+		text-align:center;
+	}
+	.rb2{
+		flex:8;
+	}
+	.ct1{
+		flex:1;
+	}
+	.ct2,.ct3,.ct4{
+		flex:1;
+	}
+	.ct img{
+		float:right;
+		width:50px;
+		height:50px;
+	}
+	.ct5{
+		flex:1;
+	}
+	.ct5 img{
+
+		width:40px;
+		height:40px;
+		margin-left:160px;
+		margin-top:5px;
+	}
+	.ct6{
+		flex:1;
+	}
+	.ct1 img{
+		width:50px;
+		height:50px;
+
+	}
+
+	</style>
+</head>
+<body>
+
+	<header>
+		<p>当前播放的音乐</p>
+		<span class="singerN">陈奕迅</span>
+		-
+		<span class="songN">好歌献给你</span>
+	</header>
+	<section>
+		<ul>
+			<li class="current"><span class="singer">陈奕迅</span>-<span class="song">好歌献给你</span></li>
+			<li><span class="singer">陈奕迅</span>-<span class="song">寂寞夜晚</span></li>
+			<li><span class="singer">陈奕迅</span>-<span class="song">今天等我来</span></li>
+			<li><span class="singer">陈奕迅</span>-<span class="song">破晓</span></li>
+			<li><span class="singer">陈奕迅</span>-<span class="song">人车志</span></li>
+		</ul>
+	</section>
+	<footer>
+		<div class="rangebar">
+			<div class="rb1 rb">00:00</div>
+			<input class="rb2 rb"  type="range" min="0" value="0"/>
+			<div class="rb3 rb">00:00</div>
+
+		</div>
+		<div class="control">
+			<div class="ct1 ctt"><img src="../image/singer1.jpg" /></div>
+			<div class="ct2 ctt ct"><img src="../image/previous.png" /></div>
+			<div class="ct3 ctt ct"><img src="../image/play.png" /></div>
+			<div class="ct4 ctt ct"><img src="../image/next.png" /></div>
+			<div class="ct5 ctt"><img src="../image/ting.png" /></div>
+			<input class="ct6 ctt" type="range" value="1" min="0" max="1" step="0.1"/>
+ 		</div>
+	</footer>
+	<audio src="../music/陈奕迅-好歌献给你.mp3"></audio>
+</body>
+<script type="text/javascript">
+var arr=[{
+	'src':'../music/陈奕迅-好歌献给你.mp3',
+	'singerName':'陈奕迅',
+	'songName':'好歌献给你.mp3',
+	'singerimg':'../image/singer1.jpg'
+},{
+	'src':'../music/陈奕迅-寂寞夜晚.mp3',
+	'singerName':'陈奕迅',
+	'songName':'寂寞夜晚.mp3',
+	'singerimg':'../image/singer2.jpg'
+},{
+	'src':'../music/陈奕迅-今天等我来.mp3',
+	'singerName':'陈奕迅',
+	'songName':'今天等我来.mp3',
+	'singerimg':'../image/singer3.jpg'
+},{
+	'src':'../music/陈奕迅-破晓.mp3',
+	'singerName':'陈奕迅',
+	'songName':'破晓.mp3',
+	'singerimg':'../image/singer4.jpg'
+},{
+	'src':'../music/陈奕迅-人车志.mp3',
+	'singerName':'陈奕迅',
+	'songName':'人车志.mp3',
+	'singerimg':'../image/singer5.jpg'
+},{
+	'src':'../music/陈奕迅-夕阳无限好.mp3',
+	'singerName':'陈奕迅',
+	'songName':'夕阳无限好.mp3',
+	'singerimg':'../image/singer6.jpg'
+}];
+var oli=document.querySelectorAll('li');
+var ado=document.querySelector('audio');
+var singerimg=document.querySelector('.ct1 img');
+var singerN=document.querySelector('.singerN');
+var songN=document.querySelector('.songN');
+var rb1=document.querySelector('.rb1');
+var rb2=document.querySelector('.rb2');
+var rb3=document.querySelector('.rb3');
+var playimg=document.querySelector('.ct3 img');
+var previousimg=document.querySelector('.ct2 img');
+var nextimg=document.querySelector('.ct4 img');
+var num=0;
+var soundimg=document.querySelector('.ct5 img');
+var ct6=document.querySelector('.ct6');
+for(var i=0;i<oli.length;i++){
+	oli[i].index=i;
+	oli[i].onclick=function(){
+		ado.src=arr[this.index].src;
+		singerimg.src=arr[this.index].singerimg;
+		singerN.innerHTML=arr[this.index].singerName;
+		songN.innerHTML=arr[this.index].songName;
+		ado.play();
+		alltime();
+		playimg.src='../image/pause.png';
+	    for(var j=0;j<oli.length;j++){
+	    	oli[j].style.background="#fffccc";
+	    	oli[j].style.color="#000";
+	    }
+	    oli[this.index].style.background="red";
+	    oli[this.index].style.color="#fff";
+		num=this.index;
+	}
+}
+
+
+
+		rb2.oninput=function(){
+			ado.currentTime=rb2.value;
+		}
+		ado.ontimeupdate=function(){
+			rb2.value=ado.currentTime;
+			currenttime();
+
+			if(ado.currentTime==ado.duration){
+
+				num++;
+				if(num>oli.length-1){
+					num=0;
+				}
+				for(var z=0;z<oli.length;z++){
+		    	oli[z].style.background="#fffccc";
+		    	oli[z].style.color="#000";
+			    }
+			    oli[num].style.background="red";
+				ado.src=arr[num].src;
+				singerimg.src=arr[num].singerimg;
+				singerN.innerHTML=arr[num].singerName;
+				songN.innerHTML=arr[num].songName;
+				ado.play();
+				alltime();
+				playimg.src='../image/pause.png';
+			}
+
+		}
+
+	function alltime(){
+				setTimeout(function(){
+
+					var allT=ado.duration;
+
+					var allM=Math.floor(parseInt(allT)/60)>10?Math.floor(parseInt(allT)/60):'0'+Math.floor(parseInt(allT)/60);
+					var allS=Math.floor(parseInt(allT)%60)>10?Math.floor(parseInt(allT)%60):'0'+Math.floor(parseInt(allT)%60);
+					rb3.innerHTML=allM+':'+allS;
+					rb2.max=allT;
+			  	},200);
+		}
+
+	function currenttime(){
+				setTimeout(function(){
+
+					var cT=ado.currentTime;
+
+					var cM=Math.floor(parseInt(cT)/60)>10?Math.floor(parseInt(cT)/60):'0'+Math.floor(parseInt(cT)/60);
+					var cS=Math.floor(parseInt(cT)%60)>10?Math.floor(parseInt(cT)%60):'0'+Math.floor(parseInt(cT)%60);
+					rb1.innerHTML=cM+':'+cS;
+
+			  	},200);
+		}
+	playimg.onclick=function(){
+		if(ado.paused){
+			playimg.src='../image/pause.png';
+			ado.play();
+			alltime();
+		}
+		else{
+
+			playimg.src='../image/play.png';
+			ado.pause();
+		}
+	}
+	previousimg.onclick=function(){
+		num--;
+		if(num<0){
+			num=oli.length-1;
+		}
+		ado.src=arr[num].src;
+		singerimg.src=arr[num].singerimg;
+		singerN.innerHTML=arr[num].singerName;
+		songN.innerHTML=arr[num].songName;
+		ado.play();
+		alltime();
+		playimg.src='../image/pause.png';
+	}
+	nextimg.onclick=function(){
+		num++;
+		if(num>oli.length-1){
+			num=0;
+		}
+		ado.src=arr[num].src;
+		singerimg.src=arr[num].singerimg;
+		singerN.innerHTML=arr[num].singerName;
+		songN.innerHTML=arr[num].songName;
+		ado.play();
+		alltime();
+		playimg.src='../image/pause.png';
+	}
+
+	ct6.oninput=function(){
+		soundimg.src='../image/ting.png';
+		ado.volume=ct6.value;
+		if(ct6.value==0){
+		soundimg.src='../image/xu.png';
+		}
+	}
+	soundimg.onclick=function(){
+		if(ado.muted){
+			soundimg.src='../image/ting.png';
+			ado.muted=false;
+		}
+		else{
+			ado.muted=true;
+			soundimg.src='../image/xu.png';
+		}
+	}
+</script>
+</html>
